@@ -50,7 +50,7 @@ class Reviews {
     while($row_object){ //while there's a result object...
       $new_review = new Review(
         intval($row_object->id),
-        intval($row_object->user_id),
+        $row_object->user_id,
         $row_object->restaurant_id,
         $row_object->dish_name,
         intval($row_object->dish_id),
