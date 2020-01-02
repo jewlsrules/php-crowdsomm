@@ -1,0 +1,15 @@
+CREATE TABLE reviews (
+  id serial PRIMARY KEY,
+  user_id VARCHAR(50) NOT NULL,
+  restaurant_id VARCHAR(50) NOT NULL,
+  dish_name VARCHAR(50) NOT NULL,
+  dish_id integer NOT NULL,
+  stars integer NOT NULL,
+  review_text VARCHAR(1000)
+);
+
+INSERT INTO reviews (user_id, restaurant_id, dish_name, dish_id, stars, review_text) VALUES ('5e0bb05028f89706ce5e24e8', '90Kr1hSW3Vku9g4yfQIBgQ', 'chicken fingers', 1, 5, 'this was really good');
+
+CREATE TABLE test (id serial, foo VARCHAR(50) NOT NULL);
+
+INSERT INTO test (foo) VALUES ('bar');

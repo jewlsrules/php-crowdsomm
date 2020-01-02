@@ -16,7 +16,7 @@ if(getenv('DATABASE_URL')){
         "dbname=".$dbname
     );
 } else {
-    $dbconn = pg_connect("host=localhost dbname=app_tracker");
+    $dbconn = pg_connect("host=localhost dbname=crowdsomm");
 }
 
 class Review {
@@ -40,11 +40,12 @@ class Review {
 
 // this is the "factory" that all of the functions will go through
 class Reviews {
+
   //get all applications function
   static function all(){
     $reviews = array();
 
-    $results = pg_query("SELECT * FROM applications"); //getting the information from the database for all applications
+    $results = pg_query("SELECT * FROM reviews"); //getting the information from the database for all applications
     $row_object = pg_fetch_object($results);
 
     while($row_object){ //while there's a result object...
@@ -64,7 +65,7 @@ class Reviews {
   }
 
   static function create($review){
-    $query ="INSERT INTO reviews (user_id, restaurant_id, dish_name, dish_id, stars, review_text) VALUES ($1, $2, $3, $4, $5, $6)";
+    $query = "INSERT INTO reviews (user_id, restaurant_id, dish_name, dish_id, stars, review_text) VALUES ($1, $2, $3, $4, $5, $6)";
     $query_params = array($review->user_id, $review->restaurant_id, $review->dish_name, $review->dish_id, $review->stars, $review->review_text);
     pg_query_params($query, $query_params);
     return self::all();
