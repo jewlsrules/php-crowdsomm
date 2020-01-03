@@ -19,6 +19,9 @@ if ($_REQUEST['action'] == 'index') {
 } elseif ($_REQUEST['action'] == 'delete') {
   $all_reviews = Reviews::delete($_REQUEST['id']);
   echo json_encode($all_reviews);
+} elseif ($_REQUEST['action'] == 'find') {
+  $all_reviews = Reviews::findById($_REQUEST['id']);
+  echo json_encode($all_reviews)
 }
 
 ?>

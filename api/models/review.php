@@ -64,6 +64,26 @@ class Reviews {
     return $reviews;
   }
 
+  static function findById($id){
+    $results = pg_query("SELECT * FROM reviews WHERE restaurant_id = $1");
+    $row_object = pg_fetch_object($results);
+
+    while($row_object){ //while there's a result object...
+      $new_review = new Review(
+        intval($row_object->id),
+        $row_object->user_id,
+        $row_object->restaurant_id,
+        $row_object->dish_name,
+        intval($row_object->dish_id),
+        intval($row_object->stars),
+        $row_object->review_text
+      );
+      $reviews[] = $new_review;
+      $row_object = pg_fetch_object($results);
+    }
+    return $reviews;
+  }
+
   static function create($review){
     $query = "INSERT INTO reviews (user_id, restaurant_id, dish_name, dish_id, stars, review_text) VALUES ($1, $2, $3, $4, $5, $6)";
     $query_params = array($review->user_id, $review->restaurant_id, $review->dish_name, $review->dish_id, $review->stars, $review->review_text);

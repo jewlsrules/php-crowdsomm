@@ -7,6 +7,9 @@ RewriteEngine On
 RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^reviews$ controllers/reviews.php?action=index
 
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^reviews/restid/(^.*)$ controllers/reviews.php?action=find&id=$1
+
 RewriteCond %{REQUEST_METHOD} ^POST$
 RewriteRule ^reviews$ controllers/reviews.php?action=post
 
