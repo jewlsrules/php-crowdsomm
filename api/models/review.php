@@ -65,7 +65,12 @@ class Reviews {
   }
 
   static function findById($id){
-    $results = pg_query("SELECT * FROM reviews WHERE restaurant_id = $1");
+    $reviews = array();
+
+    $query = "SELECT * FROM reviews WHERE restaurant_id = $1";
+    $query_params = array($id);
+
+    $results = pg_query_params($query, $query_params);
     $row_object = pg_fetch_object($results);
 
     while($row_object){ //while there's a result object...
