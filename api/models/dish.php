@@ -32,10 +32,9 @@ class Dish {
 
 // this is the "factory" that all of the functions will go through
 class Dishes {
-
   //get all dishes function
   static function all(){
-    $reviews = array();
+    $dishes = array();
 
     $results = pg_query("SELECT * FROM dishes"); //getting the information from the database for all applications
     $row_object = pg_fetch_object($results);
@@ -43,13 +42,13 @@ class Dishes {
     while($row_object){ //while there's a result object...
       $new_dish = new Dish(
         intval($row_object->id),
-        $dish_name->dish_name,
+        $row_object->dish_name,
         $row_object->restaurant_id,
       );
       $dishes[] = $new_dish;
       $row_object = pg_fetch_object($results);
     }
-    return $reviews;
+    return $dishes;
   }
 
   static function findByRestId($id){
