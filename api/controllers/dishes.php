@@ -20,7 +20,7 @@ if ($_REQUEST['action'] == 'index') {
   $all_dishes = Dishes::delete($_REQUEST['id']);
   echo json_encode($all_dishes);
 } elseif ($_REQUEST['action'] == 'find') {
-  $all_dishes = Dishes::findById($_REQUEST['id']);
+  $all_dishes = Dishes::findByRestId($_REQUEST['id']);
   echo json_encode($all_dishes);
 };
 
