@@ -41,7 +41,7 @@ class Review {
 // this is the "factory" that all of the functions will go through
 class Reviews {
 
-  //get all applications function
+  //get all reviews function
   static function all(){
     $reviews = array();
 

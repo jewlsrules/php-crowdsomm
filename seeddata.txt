@@ -15,3 +15,5 @@ CREATE TABLE test (id serial, foo VARCHAR(50) NOT NULL);
 INSERT INTO test (foo) VALUES ('bar');
 
 INSERT INTO reviews (user_id, restaurant_id, dish_name, dish_id, stars, review_text) VALUES ('5e0bb05028f89706ce5e24e8', 'fakeid', 'this shouldnt show', 1, 5, 'this shouldnt show');
+
+SELECT dish_id, AVG(stars) AS stars FROM reviews GROUP BY dish_id;
