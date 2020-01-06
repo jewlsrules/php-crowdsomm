@@ -72,6 +72,27 @@ class Dishes {
     return $dishes;
   }
 
+  static function findByDishId($id){
+    $dishes = array();
+
+    $query = "SELECT * FROM dishes WHERE dish_id = $1";
+    $query_params = array($id);
+
+    $results = pg_query_params($query, $query_params);
+    $row_object = pg_fetch_object($results);
+
+    while($row_object){ //while there's a result object...
+      $new_dish = new Dish(
+        intval($row_object->id),
+        $row_object->dish_name,
+        $row_object->restaurant_id,
+      );
+      $dishes[] = $new_dish;
+      $row_object = pg_fetch_object($results);
+    }
+    return $dishes;
+  }
+
   static function create($dish){
     $query = "INSERT INTO dishes (dish_name, restaurant_id) VALUES ($1, $2)";
     $query_params = array($dish->dish_name, $dish->restaurant_id);

@@ -22,6 +22,9 @@ if ($_REQUEST['action'] == 'index') {
 } elseif ($_REQUEST['action'] == 'find') {
   $all_dishes = Dishes::findByRestId($_REQUEST['id']);
   echo json_encode($all_dishes);
+} elseif ($_REQUEST['action'] == 'findbydishid') {
+  $all_dishes = Dishes::findByDishId($_REQUEST['id']);
+  echo json_encode($all_dishes);
 };
 
 ?>

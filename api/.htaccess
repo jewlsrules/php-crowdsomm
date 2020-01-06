@@ -31,6 +31,9 @@ RewriteRule ^dishes$ controllers/dishes.php?action=index
 RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^dishes/restid/(.*)$ controllers/dishes.php?action=find&id=$1
 
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^dishes/dishid/(.*)$ controllers/dishes.php?action=findbydishid&id=$1
+
 RewriteCond %{REQUEST_METHOD} ^POST$
 RewriteRule ^dishes$ controllers/dishes.php?action=post
 
