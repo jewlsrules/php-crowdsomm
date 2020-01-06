@@ -21,7 +21,7 @@ if ($_REQUEST['action'] == 'index') {
   echo json_encode($all_dishes);
 } elseif ($_REQUEST['action'] == 'find') {
   $all_dishes = Dishes::findById($_REQUEST['id']);
-  echo json_encode($all_reviews);
+  echo json_encode($all_dishes);
 };
 
 ?>

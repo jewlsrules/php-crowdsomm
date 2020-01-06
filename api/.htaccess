@@ -10,6 +10,12 @@ RewriteRule ^reviews$ controllers/reviews.php?action=index
 RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^reviews/restid/(.*)$ controllers/reviews.php?action=find&id=$1
 
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^reviews/dishid/alldetails/(.*)$ controllers/reviews.php?action=findbydish&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^reviews/dishid/averagestars/(.*)$ controllers/reviews.php?action=getAverageStarsByDish&id=$1
+
 RewriteCond %{REQUEST_METHOD} ^POST$
 RewriteRule ^reviews$ controllers/reviews.php?action=post
 
@@ -21,6 +27,9 @@ RewriteRule ^reviews/([0-9]+)$ controllers/reviews.php?action=delete&id=$1
 
 RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^dishes$ controllers/dishes.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^dishes/restid/(.*)$ controllers/dishes.php?action=find&id=$1
 
 RewriteCond %{REQUEST_METHOD} ^POST$
 RewriteRule ^dishes$ controllers/dishes.php?action=post

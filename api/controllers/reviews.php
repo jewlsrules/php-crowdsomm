@@ -22,6 +22,13 @@ if ($_REQUEST['action'] == 'index') {
 } elseif ($_REQUEST['action'] == 'find') {
   $all_reviews = Reviews::findById($_REQUEST['id']);
   echo json_encode($all_reviews);
+} elseif ($_REQUEST['action'] == 'findbydish') {
+  $all_reviews = Reviews::findByDishId($_REQUEST['id']);
+  echo json_encode($all_reviews);
+} elseif ($_REQUEST['action'] == 'getAverageStarsByDish') {
+  $average = Reviews::getAverageStarsByDish($_REQUEST['id']);
+  echo json_encode($average);
+  // echo('working!');
 };
 
 ?>

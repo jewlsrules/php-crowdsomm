@@ -38,6 +38,15 @@ class Review {
   }
 }
 
+class AverageStars {
+  public $dish_id;
+  public $stars;
+  public function __construct($dish_id, $stars){
+    $this->dish_id = $dish_id;
+    $this->stars = $stars;
+  }
+}
+
 // this is the "factory" that all of the functions will go through
 class Reviews {
 
@@ -87,6 +96,47 @@ class Reviews {
       $row_object = pg_fetch_object($results);
     }
     return $reviews;
+  }
+
+  static function findByDishId($id){
+    $reviews = array();
+
+    $query = "SELECT * FROM reviews WHERE dish_id = $1";
+    $query_params = array($id);
+
+    $results = pg_query_params($query, $query_params);
+    $row_object = pg_fetch_object($results);
+
+    while($row_object){ //while there's a result object...
+      $new_review = new Review(
+        intval($row_object->id),
+        $row_object->user_id,
+        $row_object->restaurant_id,
+        $row_object->dish_name,
+        intval($row_object->dish_id),
+        intval($row_object->stars),
+        $row_object->review_text
+      );
+      $reviews[] = $new_review;
+      $row_object = pg_fetch_object($results);
+    }
+    return $reviews;
+  }
+
+  static function getAverageStarsByDish($id){
+
+    $query = "SELECT dish_id, AVG(stars) AS stars FROM reviews WHERE dish_id = $1 GROUP BY dish_id";
+    $query_params = array($id);
+
+    $results = pg_query_params($query, $query_params);
+    $row_object = pg_fetch_object($results);
+
+    $new_avg = new AverageStars(
+      intval($row_object->dish_id),
+      intval($row_object->stars)
+    );
+
+    return $new_avg;
   }
 
   static function create($review){
