@@ -75,7 +75,7 @@ class Dishes {
   static function findByDishId($id){
     $dishes = array();
 
-    $query = "SELECT * FROM dishes WHERE dish_id = $1";
+    $query = "SELECT * FROM dishes WHERE id = $1";
     $query_params = array($id);
 
     $results = pg_query_params($query, $query_params);
