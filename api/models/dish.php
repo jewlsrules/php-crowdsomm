@@ -61,10 +61,10 @@ class Dishes {
     $row_object = pg_fetch_object($results);
 
     while($row_object){ //while there's a result object...
-      $new_review = new Dish(
+      $new_dish = new Dish(
         intval($row_object->id),
         $row_object->dish_name,
-        $row_object->restaurant_id
+        $row_object->restaurant_id,
       );
       $dishes[] = $new_dish;
       $row_object = pg_fetch_object($results);
