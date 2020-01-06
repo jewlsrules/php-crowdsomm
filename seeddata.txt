@@ -17,3 +17,11 @@ INSERT INTO test (foo) VALUES ('bar');
 INSERT INTO reviews (user_id, restaurant_id, dish_name, dish_id, stars, review_text) VALUES ('5e0bb05028f89706ce5e24e8', 'fakeid', 'this shouldnt show', 1, 5, 'this shouldnt show');
 
 SELECT dish_id, AVG(stars) AS stars FROM reviews GROUP BY dish_id;
+
+CREATE TABLE dishes (
+  id serial PRIMARY KEY,
+  dish_name VARCHAR(50) NOT NULL,
+  restaurant_id VARCHAR(50) NOT NULL
+);
+
+INSERT INTO dishes (dish_name, restaurant_id) VALUES ('chicken fingers', '90Kr1hSW3Vku9g4yfQIBgQ');
