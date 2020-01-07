@@ -61,7 +61,7 @@ class Dishes {
   static function findByRestId($id){
     $dishes = array();
 
-    $query = "SELECT * FROM dishes WHERE restaurant_id = $1";
+    $query = "SELECT * FROM dishes WHERE restaurant_id = $1 ORDER BY id ASC";
     $query_params = array($id);
 
     $results = pg_query_params($query, $query_params);
