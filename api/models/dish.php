@@ -30,6 +30,13 @@ class Dish {
   }
 }
 
+// class SingleID {
+//   public $id;
+//   public function __construct($id){
+//     $this->id = $id;
+//   }
+// }
+
 // this is the "factory" that all of the functions will go through
 class Dishes {
   //get all dishes function
@@ -94,10 +101,11 @@ class Dishes {
   }
 
   static function create($dish){
-    $query = "INSERT INTO dishes (dish_name, restaurant_id) VALUES ($1, $2) RETURNING dish_id";
+    $query = "INSERT INTO dishes (dish_name, restaurant_id) VALUES ($1, $2) RETURNING id";
     $query_params = array($dish->dish_name, $dish->restaurant_id);
     $results = pg_query_params($query, $query_params);
-    return $results;
+    $row_object = pg_fetch_object($results);
+    return $row_object;
   }
 
   static function update($updated_dish){
