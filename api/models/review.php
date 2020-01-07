@@ -39,9 +39,11 @@ class Review {
 }
 
 class AverageStars {
+  public $dish_name;
   public $dish_id;
   public $stars;
-  public function __construct($dish_id, $stars){
+  public function __construct($dish_name, $dish_id, $stars){
+    $this->dish_name = $dish_name;
     $this->dish_id = $dish_id;
     $this->stars = $stars;
   }
@@ -132,6 +134,7 @@ class Reviews {
     $row_object = pg_fetch_object($results);
 
     $new_avg = new AverageStars(
+      $row_object->dish_name,
       intval($row_object->dish_id),
       intval($row_object->stars)
     );
