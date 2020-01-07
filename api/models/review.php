@@ -125,7 +125,7 @@ class Reviews {
 
   static function getAverageStarsByDish($id){
 
-    $query = "SELECT dish_id, AVG(stars) AS stars FROM reviews WHERE dish_id = $1 GROUP BY dish_id";
+    $query = "SELECT dish_name, dish_id, AVG(stars) AS stars FROM reviews WHERE dish_id = $1 GROUP BY dish_id, dish_name";
     $query_params = array($id);
 
     $results = pg_query_params($query, $query_params);
