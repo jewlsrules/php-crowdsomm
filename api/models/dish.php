@@ -94,10 +94,10 @@ class Dishes {
   }
 
   static function create($dish){
-    $query = "INSERT INTO dishes (dish_name, restaurant_id) VALUES ($1, $2)";
+    $query = "INSERT INTO dishes (dish_name, restaurant_id) VALUES ($1, $2) RETURNING dish_id";
     $query_params = array($dish->dish_name, $dish->restaurant_id);
-    pg_query_params($query, $query_params);
-    return self::all();
+    $results = pg_query_params($query, $query_params);
+    return $results;
   }
 
   static function update($updated_dish){
